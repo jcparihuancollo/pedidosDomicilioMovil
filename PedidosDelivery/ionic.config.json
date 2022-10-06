@@ -1,0 +1,7 @@
+{
+  "name": "PedidosDelivery",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

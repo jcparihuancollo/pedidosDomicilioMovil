@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">pedido</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button  (click)="cerrarSesion()">
+        <ion-icon slot="icon-only"  name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+  <ion-accordion-group expand="inset" *ngFor="let item of pedidos">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>
+          <h2 *ngIf="item.estadoPedido==1" >{{item.descripcion}} <p>Estado : Confirmado </p></h2>
+          <h2 *ngIf="item.estadoPedido==2" >{{item.descripcion}} <p>Estado : En Camino </p></h2>
+          <h2 *ngIf="item.estadoPedido==3" >{{item.descripcion}} <p>Estado : Entregado </p></h2>
+          <h3>fecha : {{item.fechaHoraPedido | date: 'yyyy-MM-dd HH:mm:ss'}} </h3>
+          <p>Total : {{item.precioTotal}} </p>
+          
+        </ion-label>
+      </ion-item>
+      <div slot="content">
+         <ion-item>
+          <ion-label>
+            <h2>Cliente : {{item.nombre}}</h2>
+            <h2>Celular : {{item.celular }} </h2>
+          </ion-label>
+         </ion-item>
+         <ion-button [disabled]="item.estadoPedido==3" (click)="actualizarPedido(item)" expand="block" fill="clear" shape="round">
+            Cambiar a Entregado
+         </ion-button>
+         <ion-item-divider>
+          <ion-label>Detalle</ion-label>
+         </ion-item-divider>
+        <ion-list *ngFor="let g of item.detalle">
+            <ion-item>
+              <ion-label>
+                <h2>Producto {{g.nombre}}</h2>
+                <h2>cantidad {{g.cantidad }}  precio : {{g.precio}} </h2>
+              </ion-label>
+            </ion-item>
+        </ion-list>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+</ion-content>
