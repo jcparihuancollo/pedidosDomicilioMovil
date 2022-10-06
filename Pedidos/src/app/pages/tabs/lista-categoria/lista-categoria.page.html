@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Categoria</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list-header>RESTAURANTES </ion-list-header>
+  <ion-list *ngFor="let item of restaurantes" >
+    <ion-item button (click)="verProducto(item)">
+      <ion-avatar slot="start">
+        <img src="https://picsum.photos/200/300"/>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.nombre}}</h2>
+        <h3>Ubicacion : {{item.direccion}} </h3>
+        <p>Cel.:: : {{item.celular}} </p>
+        <p>Abre : {{item.horarioApertura}}  Cierra : {{item.horarioCierre}} </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

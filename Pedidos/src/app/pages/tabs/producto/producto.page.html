@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">producto</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="carrito()" >
+        <ion-badge *ngIf="bolsa.length>0" class="badge" color="danger">{{bolsa.length}}</ion-badge>
+        <ion-icon slot="icon-only"  name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar >
+    <ion-searchbar (ionInput)="busqueda($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let item of busquedas" >
+        <ion-card style="border-radius: 15px; " >
+          <ion-card-header>
+            <ion-card-title style=" white-space: initial; font-size: small; ">{{item.nombre}} </ion-card-title>
+          </ion-card-header>
+          <ion-img  src="https://picsum.photos/200/300"></ion-img>
+          <ion-card-content >
+          <ion-toolbar>
+            <p  style="font-weight: bold;" > {{item.precio}} BS</p>
+            <ion-buttons slot="secondary">
+              <ion-button (click)="adicionarCarrito(item)">
+                <ion-icon  slot="icon-only" color="primary" name="bag-handle-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
