@@ -1,7 +1,0 @@
-{
-  "name": "Pedidos",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
